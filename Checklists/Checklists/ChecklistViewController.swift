@@ -35,7 +35,23 @@ class ChecklistViewController: UITableViewController {
         let item5 = ChecklistItem()
         item5.text = "Walk the faiq"
         items.append(item5)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    //MARK:- IBAction
+    @IBAction func addItem(_ sender: Any) {
+        let newRowIndex = items.count
+        
+        let item = ChecklistItem()
+        item.text = "I am a new row"
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    
 
     //MARK:- Table View Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

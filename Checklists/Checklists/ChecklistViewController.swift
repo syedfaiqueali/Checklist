@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ChecklistViewController.swift
 //  Checklists
 //
 //  Created by Faiq on 15/11/2020.
@@ -33,7 +33,7 @@ class ChecklistViewController: UITableViewController {
         items.append(item4)
         
         let item5 = ChecklistItem()
-        item5.text = "Walk the dog"
+        item5.text = "Walk the faiq"
         items.append(item5)
     }
 
@@ -50,6 +50,7 @@ class ChecklistViewController: UITableViewController {
         let item = items[indexPath.row]
         label.text = item.text
         
+        configureText(for: cell, with: item)
         configureCheckmark(for: cell, with: item)
         return cell
     }
@@ -77,7 +78,13 @@ class ChecklistViewController: UITableViewController {
         }
         
     }
+    
+    func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         
+        let label = cell.viewWithTag(1000) as! UILabel
+        label.text = item.text
+        
+    }
 
 }
 

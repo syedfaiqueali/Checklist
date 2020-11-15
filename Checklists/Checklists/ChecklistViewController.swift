@@ -107,6 +107,19 @@ class ChecklistViewController: UITableViewController {
         return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
+    //save data to file
+    //This method take contents of the items array, converts it to
+    //a block of binary data, and then writes this data to a file.
+    func saveChecklistItems(){
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+    
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {

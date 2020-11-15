@@ -54,7 +54,7 @@
         <!--Add Item-->
         <scene sceneID="QhN-WC-z28">
             <objects>
-                <tableViewController id="g1z-Oh-PfY" sceneMemberID="viewController">
+                <tableViewController id="g1z-Oh-PfY" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VaO-F3-qZP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,8 +75,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Item" id="tK0-cu-V11">
-                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="m0B-vB-SUb"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ZQN-2p-UbH"/>
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="m0B-vB-SUb">
+                            <connections>
+                                <action selector="cancel" destination="g1z-Oh-PfY" id="qMa-9l-H5q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ZQN-2p-UbH">
+                            <connections>
+                                <action selector="done" destination="g1z-Oh-PfY" id="uSb-GU-RaV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13u-0c-URe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

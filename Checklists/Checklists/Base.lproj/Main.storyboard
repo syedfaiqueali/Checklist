@@ -69,12 +69,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-Bl-9Yj">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-Bl-9Yj">
                                                     <rect key="frame" x="10" y="2" width="394" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="done" destination="g1z-Oh-PfY" eventType="editingDidEndOnExit" id="awG-ku-rdi"/>
+                                                        <outlet property="delegate" destination="g1z-Oh-PfY" id="0wB-WJ-Qqd"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -100,13 +101,14 @@
                                 <action selector="cancel" destination="g1z-Oh-PfY" id="qMa-9l-H5q"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ZQN-2p-UbH">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="ZQN-2p-UbH">
                             <connections>
                                 <action selector="done" destination="g1z-Oh-PfY" id="uSb-GU-RaV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="ZQN-2p-UbH" id="ktS-ho-dUh"/>
                         <outlet property="textField" destination="Fz9-Bl-9Yj" id="lkn-iL-yl5"/>
                     </connections>
                 </tableViewController>

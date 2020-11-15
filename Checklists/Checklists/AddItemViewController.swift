@@ -9,6 +9,8 @@ import UIKit
 
 class AddItemViewController: UITableViewController {
 
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,12 +23,17 @@ class AddItemViewController: UITableViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        textField.becomeFirstResponder()
+    }
+    
     //MARK:- IBActions
     @IBAction func cancel(){
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func done(){
+        print(textField.text!)
         navigationController?.popViewController(animated: true)
     }
     

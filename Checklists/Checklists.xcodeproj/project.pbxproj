@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		3452025625616F1A00B55B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025525616F1A00B55B4D /* AppDelegate.swift */; };
 		3452025825616F1A00B55B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025725616F1A00B55B4D /* SceneDelegate.swift */; };
-		3452025A25616F1A00B55B4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025925616F1A00B55B4D /* ViewController.swift */; };
+		3452025A25616F1A00B55B4D /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025925616F1A00B55B4D /* ChecklistViewController.swift */; };
 		3452025D25616F1A00B55B4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3452025B25616F1A00B55B4D /* Main.storyboard */; };
 		3452025F25616F1B00B55B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3452025E25616F1B00B55B4D /* Assets.xcassets */; };
 		3452026225616F1B00B55B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3452026025616F1B00B55B4D /* LaunchScreen.storyboard */; };
+		3452026D2561724E00B55B4D /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452026C2561724E00B55B4D /* ChecklistItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3452025225616F1A00B55B4D /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3452025525616F1A00B55B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3452025725616F1A00B55B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3452025925616F1A00B55B4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3452025925616F1A00B55B4D /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		3452025C25616F1A00B55B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3452025E25616F1B00B55B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3452026125616F1B00B55B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3452026325616F1B00B55B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3452026C2561724E00B55B4D /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				3452025525616F1A00B55B4D /* AppDelegate.swift */,
 				3452025725616F1A00B55B4D /* SceneDelegate.swift */,
-				3452025925616F1A00B55B4D /* ViewController.swift */,
+				3452025925616F1A00B55B4D /* ChecklistViewController.swift */,
 				3452025B25616F1A00B55B4D /* Main.storyboard */,
 				3452025E25616F1B00B55B4D /* Assets.xcassets */,
 				3452026025616F1B00B55B4D /* LaunchScreen.storyboard */,
 				3452026325616F1B00B55B4D /* Info.plist */,
+				3452026C2561724E00B55B4D /* ChecklistItem.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -137,9 +140,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3452025A25616F1A00B55B4D /* ViewController.swift in Sources */,
+				3452025A25616F1A00B55B4D /* ChecklistViewController.swift in Sources */,
 				3452025625616F1A00B55B4D /* AppDelegate.swift in Sources */,
 				3452025825616F1A00B55B4D /* SceneDelegate.swift in Sources */,
+				3452026D2561724E00B55B4D /* ChecklistItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

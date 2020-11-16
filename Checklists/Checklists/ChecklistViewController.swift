@@ -16,7 +16,8 @@ class ChecklistViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //Disable large titles for this view controller
+        navigationItem.largeTitleDisplayMode = .never
         
         //print("Documents folder is \(documentsDirectory())")
         //print("Data file path is \(dataFilePath())")

@@ -10,6 +10,7 @@
 		34017045256226A2008B1FE1 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34017044256226A2008B1FE1 /* AllListsViewController.swift */; };
 		3401704925622EA8008B1FE1 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401704825622EA8008B1FE1 /* Checklist.swift */; };
 		3401705125623BF2008B1FE1 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401705025623BF2008B1FE1 /* ListDetailViewController.swift */; };
+		34017054256278B5008B1FE1 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34017053256278B5008B1FE1 /* DataModel.swift */; };
 		3452025625616F1A00B55B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025525616F1A00B55B4D /* AppDelegate.swift */; };
 		3452025825616F1A00B55B4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025725616F1A00B55B4D /* SceneDelegate.swift */; };
 		3452025A25616F1A00B55B4D /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452025925616F1A00B55B4D /* ChecklistViewController.swift */; };
@@ -24,6 +25,7 @@
 		34017044256226A2008B1FE1 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		3401704825622EA8008B1FE1 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		3401705025623BF2008B1FE1 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		34017053256278B5008B1FE1 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		3452025225616F1A00B55B4D /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3452025525616F1A00B55B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3452025725616F1A00B55B4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				3452026C2561724E00B55B4D /* ChecklistItem.swift */,
 				3401704825622EA8008B1FE1 /* Checklist.swift */,
+				34017053256278B5008B1FE1 /* DataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				3452026D2561724E00B55B4D /* ChecklistItem.swift in Sources */,
 				3401704925622EA8008B1FE1 /* Checklist.swift in Sources */,
 				3401705125623BF2008B1FE1 /* ListDetailViewController.swift in Sources */,
+				34017054256278B5008B1FE1 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

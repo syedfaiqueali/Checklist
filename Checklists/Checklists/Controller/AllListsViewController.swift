@@ -13,7 +13,7 @@ class AllListsViewController: UITableViewController {
     let cellIdentifier = "ChecklistCell"
     
     //Instance Variables
-    var lists = [Checklist]()
+    var dataModel: DataModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,6 @@ class AllListsViewController: UITableViewController {
         
         //register cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-     
-        loadChecklist()
         
     }
     
@@ -42,13 +40,13 @@ class AllListsViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        return dataModel.lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         
         cell.textLabel!.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
@@ -59,13 +57,13 @@ class AllListsViewController: UITableViewController {
     //MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         //sending checklist object here to set title name of All list
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        lists.remove(at: indexPath.row)
+        dataModel.lists.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
@@ -75,51 +73,12 @@ class AllListsViewController: UITableViewController {
         let controller = storyboard?.instantiateViewController(identifier: "ListDetailViewController") as! ListDetailViewController
         controller.delegate = self
         
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         controller.checklistToEdit = checklist
         
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    //MARK:- Data Saving
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func dataFilePath() -> URL{
-        return documentsDirectory().appendingPathComponent("Checklist.plist")
-    }
-    
-    //MARK:- Save Data File
-    //This method take contents of the items array, converts it to
-    //a block of binary data, and then writes this data to a file.
-    func saveChecklist(){
-        let encoder = PropertyListEncoder()
-        do {
-            let data = try encoder.encode(lists)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-        } catch {
-            print("Error encoding item array: \(error.localizedDescription)")
-        }
-    }
-    
-    //MARK:- Load the file
-    func loadChecklist(){
-        let path = dataFilePath()
-        
-        //load contents of Checklist.plist into a new data object
-        if let data = try? Data(contentsOf: path) {
-            //When find .plist file, we'll load entire array and its content from file using PropertyListDecoder
-            let decoder = PropertyListDecoder()
-            do {
-                //for loading and populating
-                lists = try decoder.decode([Checklist].self, from: data)
-            } catch {
-                print("Error decoding list array: \(error.localizedDescription)")
-            }
-        }
-    }
 }
 
 extension AllListsViewController: ListDetailViewControllerDelegate{
@@ -130,8 +89,8 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
-        let newRowIndex = lists.count
-        lists.append(checklist)
+        let newRowIndex = dataModel.lists.count
+        dataModel.lists.append(checklist)
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
@@ -141,7 +100,7 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
     }
     
     func listDetailViewControlller(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
-        if let index = lists.firstIndex(of: checklist) {
+        if let index = dataModel.lists.firstIndex(of: checklist) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.textLabel!.text = checklist.name

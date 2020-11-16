@@ -11,12 +11,19 @@ class ChecklistViewController: UITableViewController {
     
     //objects
     var items = [ChecklistItem]()
+    
+    //Instance variables
+    var checklist: Checklist!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //Disable large titles for this view controller
+        navigationItem.largeTitleDisplayMode = .never
+        
+        //set nav bar title
+        title = checklist.name
         
         //print("Documents folder is \(documentsDirectory())")
         //print("Data file path is \(dataFilePath())")

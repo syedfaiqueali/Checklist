@@ -23,24 +23,7 @@ class AllListsViewController: UITableViewController {
         
         //register cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        
-        /*
-        //Dummy Data
-        var list = Checklist(name: "Birthdays")
-        lists.append(list)
-        
-        list = Checklist(name: "Groceries")
-        lists.append(list)
-        
-        list = Checklist(name: "To Do")
-        lists.append(list)
-        
-        for list in lists {
-            let item = ChecklistItem()
-            item.text = "Item for \(list.name)"
-            list.items.append(item)
-        }
- */
+     
         loadChecklist()
         
     }
@@ -105,7 +88,7 @@ class AllListsViewController: UITableViewController {
     }
     
     func dataFilePath() -> URL{
-        return documentsDirectory().appendingPathComponent("Checklists.plist")
+        return documentsDirectory().appendingPathComponent("Checklist.plist")
     }
     
     //MARK:- Save Data File

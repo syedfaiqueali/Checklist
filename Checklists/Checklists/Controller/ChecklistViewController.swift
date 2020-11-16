@@ -22,10 +22,6 @@ class ChecklistViewController: UITableViewController {
         //set nav bar title
         title = checklist.name
         
-        //print("Documents folder is \(documentsDirectory())")
-        //print("Data file path is \(dataFilePath())")
-        
-        //loadChecklistItems()
     }
 
     //MARK:- Table View Data Source
@@ -57,7 +53,7 @@ class ChecklistViewController: UITableViewController {
             configureCheckmark(for: cell, with: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        //saveChecklistItems()
+
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -66,7 +62,6 @@ class ChecklistViewController: UITableViewController {
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        //saveChecklistItems()
         
     }
     
@@ -85,47 +80,6 @@ class ChecklistViewController: UITableViewController {
         let label = cell.viewWithTag(1000) as! UILabel
         label.text = item.text
     }
-    
-    /*
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func dataFilePath() -> URL{
-        return documentsDirectory().appendingPathComponent("Checklists.plist")
-    }
-    
-    //MARK:- Save Data File
-    //This method take contents of the items array, converts it to
-    //a block of binary data, and then writes this data to a file.
-    func saveChecklistItems(){
-        let encoder = PropertyListEncoder()
-        do {
-            let data = try encoder.encode(checklist.items)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-        } catch {
-            print("Error encoding item array: \(error.localizedDescription)")
-        }
-    }
-    
-    //MARK:- Load the file
-    func loadChecklistItems(){
-        let path = dataFilePath()
-        
-        //load contents of Checklist.plist into a new data object
-        if let data = try? Data(contentsOf: path) {
-            //When find .plist file, we'll load entire array and its content from file using PropertyListDecoder
-            let decoder = PropertyListDecoder()
-            do {
-                //for loading and populating
-                checklist.items = try decoder.decode([ChecklistItem].self, from: data)
-            } catch {
-                print("Error decoding item array: \(error.localizedDescription)")
-            }
-        }
-    }
- */
     
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -160,7 +114,6 @@ extension ChecklistViewController: AddItemViewControllerDelegate {
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         
-        //saveChecklistItems()
         navigationController?.popViewController(animated: true)
         
     }
@@ -174,7 +127,6 @@ extension ChecklistViewController: AddItemViewControllerDelegate {
             }
         }
         
-        //saveChecklistItems()
         navigationController?.popViewController(animated: true)
         
     }

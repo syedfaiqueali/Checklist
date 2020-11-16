@@ -35,6 +35,15 @@ class AllListsViewController: UITableViewController {
         lists.append(list)
         
     }
+    
+    //MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destination as! ChecklistViewController
+            //passing only the particular object
+            controller.checklist = sender as? Checklist
+        }
+    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,6 +63,9 @@ class AllListsViewController: UITableViewController {
 
     //MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowChecklist", sender: nil)
+        
+        let checklist = lists[indexPath.row]
+        //sending checklist object here to set title name of All list
+        performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
 }

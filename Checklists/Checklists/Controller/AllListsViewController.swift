@@ -31,7 +31,7 @@ class AllListsViewController: UITableViewController {
         
         navigationController?.delegate = self
         
-        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        let index = dataModel.indexOfSelectedChecklist
         if index != -1 {
             let checklist = dataModel.lists[index]
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
@@ -69,7 +69,7 @@ class AllListsViewController: UITableViewController {
     //MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Store the index of selected row into user defaults
-        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
+        dataModel.indexOfSelectedChecklist = indexPath.row
         
         let checklist = dataModel.lists[indexPath.row]
         //sending checklist object here to set title name of All list
@@ -134,7 +134,7 @@ extension AllListsViewController: UINavigationControllerDelegate{
         //===, to determine whether AllListsViewController is newly activated view controller
         //===, you're checking whether two variables refer to the exact same obj
         if viewController === self {
-            UserDefaults.standard.setValue(-1, forKey: "ChecklistIndex")
+            dataModel.indexOfSelectedChecklist = -1
         }
     }
 }

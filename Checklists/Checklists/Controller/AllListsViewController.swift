@@ -13,7 +13,7 @@ class AllListsViewController: UITableViewController {
     let cellIdentifier = "ChecklistCell"
     
     //Instance Variables
-    var lists = [Checklist]()
+    var dataModel: DataModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +24,18 @@ class AllListsViewController: UITableViewController {
         //register cell
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
-        //Dummy Data
-        var list = Checklist(name: "Birthdays")
-        lists.append(list)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        list = Checklist(name: "Groceries")
-        lists.append(list)
+        navigationController?.delegate = self
         
-        list = Checklist(name: "To Do")
-        lists.append(list)
-        
+        let index = dataModel.indexOfSelectedChecklist
+        if index >= 0 && index < dataModel.lists.count {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
     }
     
     //MARK:- Navigation
@@ -50,13 +52,13 @@ class AllListsViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        return dataModel.lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         
         cell.textLabel!.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
@@ -66,20 +68,34 @@ class AllListsViewController: UITableViewController {
 
     //MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Store the index of selected row into user defaults
+        dataModel.indexOfSelectedChecklist = indexPath.row
         
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         //sending checklist object here to set title name of All list
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        lists.remove(at: indexPath.row)
+        dataModel.lists.remove(at: indexPath.row)
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let controller = storyboard?.instantiateViewController(identifier: "ListDetailViewController") as! ListDetailViewController
+        controller.delegate = self
+        
+        let checklist = dataModel.lists[indexPath.row]
+        controller.checklistToEdit = checklist
+        
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
+//MARK:- Extension for Delegates
 extension AllListsViewController: ListDetailViewControllerDelegate{
     
     //These methods are called when user presses Done or Cancel inside the new Add/Edit Checklist Screen
@@ -88,8 +104,8 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
-        let newRowIndex = lists.count
-        lists.append(checklist)
+        let newRowIndex = dataModel.lists.count
+        dataModel.lists.append(checklist)
         
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         let indexPaths = [indexPath]
@@ -99,7 +115,7 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
     }
     
     func listDetailViewControlller(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
-        if let index = lists.firstIndex(of: checklist) {
+        if let index = dataModel.lists.firstIndex(of: checklist) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.textLabel!.text = checklist.name
@@ -108,5 +124,17 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
         navigationController?.popViewController(animated: true)
     }
     
-    
+}
+
+extension AllListsViewController: UINavigationControllerDelegate{
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        //was the back button tapped?
+        //this is called whenever the navigation controller shows a new screen
+        
+        //===, to determine whether AllListsViewController is newly activated view controller
+        //===, you're checking whether two variables refer to the exact same obj
+        if viewController === self {
+            dataModel.indexOfSelectedChecklist = -1
+        }
+    }
 }

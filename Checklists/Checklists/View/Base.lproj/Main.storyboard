@@ -39,7 +39,7 @@
         <!--Add Checklist-->
         <scene sceneID="Irh-m0-u5L">
             <objects>
-                <tableViewController id="7C6-Ox-wL0" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="7C6-Ox-wL0" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="l5c-xj-KiD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -241,7 +241,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="z4c-xy-Fwc"/>
-        <segue reference="agw-5o-F7T"/>
+        <segue reference="DpT-WJ-X4c"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

@@ -7,9 +7,10 @@
 
 import UIKit
 
-class Checklist: NSObject {
+class Checklist: NSObject, Codable {
     
     var name = ""
+    var items = [ChecklistItem]()  //creates an empty array of ChecklistItem obj
     
     init(name: String) {
         self.name = name

@@ -26,6 +26,18 @@ class AllListsViewController: UITableViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        
+        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        if index != -1 {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
+    }
+    
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowChecklist" {
@@ -56,6 +68,8 @@ class AllListsViewController: UITableViewController {
 
     //MARK:- Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Store the index of selected row into user defaults
+        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
         
         let checklist = dataModel.lists[indexPath.row]
         //sending checklist object here to set title name of All list
@@ -81,6 +95,7 @@ class AllListsViewController: UITableViewController {
     
 }
 
+//MARK:- Extension for Delegates
 extension AllListsViewController: ListDetailViewControllerDelegate{
     
     //These methods are called when user presses Done or Cancel inside the new Add/Edit Checklist Screen
@@ -109,5 +124,17 @@ extension AllListsViewController: ListDetailViewControllerDelegate{
         navigationController?.popViewController(animated: true)
     }
     
-    
+}
+
+extension AllListsViewController: UINavigationControllerDelegate{
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        //was the back button tapped?
+        //this is called whenever the navigation controller shows a new screen
+        
+        //===, to determine whether AllListsViewController is newly activated view controller
+        //===, you're checking whether two variables refer to the exact same obj
+        if viewController === self {
+            UserDefaults.standard.setValue(-1, forKey: "ChecklistIndex")
+        }
+    }
 }

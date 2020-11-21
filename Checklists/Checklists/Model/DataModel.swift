@@ -8,6 +8,7 @@
 import Foundation
 
 class DataModel {
+    
     var lists = [Checklist]()
     
     //UserDefaults stuff

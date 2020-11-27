@@ -15,4 +15,18 @@ class ChecklistItem: NSObject, Codable {
     var shouldRemind = false
     var itemID = -1  //id is a special keyword in ObjC thats why using itemID
     
+    override init() {
+        super.init()
+        itemID = DataModel.nextChecklistItemID()
+    }
+    
+    //MARK:- Helper Methods
+    //This compares the due date on the item with the current date
+    //If due date is in future than return true
+    func scheduleNotification() {
+        if shouldRemind && dueDate > Date() {
+            print("We should schedule a notification!")
+        }
+    }
+    
 }

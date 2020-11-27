@@ -27,6 +27,15 @@ class DataModel {
         handleFirstTime()
     }
     
+    //Will return new checklistItemID everytime when called
+    class func nextChecklistItemID() -> Int {
+        let userDefaults = UserDefaults.standard
+        let itemID = userDefaults.integer(forKey: "ChecklistItemID")
+        userDefaults.setValue((itemID + 1), forKey: "ChecklistItemID")
+        return itemID
+    }
+
+    
     //MARK:- Data Saving
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

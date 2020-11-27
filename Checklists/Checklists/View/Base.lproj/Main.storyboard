@@ -289,6 +289,9 @@
                                                     <rect key="frame" x="343" y="6" width="51" height="31.5"/>
                                                     <color key="tintColor" red="0.015686274510000001" green="0.66274509800000003" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="onTintColor" red="0.015686274510000001" green="0.66274509800000003" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindToggled:" destination="g1z-Oh-PfY" eventType="valueChanged" id="4Qi-mn-x3A"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>

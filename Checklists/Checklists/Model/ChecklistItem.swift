@@ -21,10 +21,17 @@ class ChecklistItem: NSObject, Codable {
         itemID = DataModel.nextChecklistItemID()
     }
     
+    /**The special deinit method will be invoked when you delete an individual ChecklistItem but also when you delete a whole Checklist- because all checklist items will be destroyed as well, as the array they are in is deallocated.*/
+    deinit {
+        removeNotification()
+    }
+    
     //MARK:- Helper Methods
     //This compares the due date on the item with the current date
     //If due date is in future than return true
     func scheduleNotification() {
+        removeNotification()
+        
         if shouldRemind && dueDate > Date() {
             //1 -Put text into notification message
             let content = UNMutableNotificationContent()
@@ -55,6 +62,11 @@ class ChecklistItem: NSObject, Codable {
             
             print("Scheduled: \(request) for itemID: \(itemID)")
         }
+    }
+    
+    func removeNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["\(itemID)"])
     }
     
 }
